@@ -38,6 +38,12 @@ void window_init(void) {
 
         // TODO: Add variable updates here
 
+        // If a button is clicked, insert the element into the buffer
+        uint8_t keyPressed = GetCharPressed();
+
+        // Ignore no key presses
+        if (keyPressed != 0) printf("%c\n", CHAR(keyPressed));
+
         // Start drawing
         BeginDrawing();
 
@@ -50,12 +56,6 @@ void window_init(void) {
         // End drawings
         EndDrawing();
     }
-
-    // Close the window
-    CloseWindow();
-}
-
-void window_close(void) {
 
     // Close the window
     CloseWindow();

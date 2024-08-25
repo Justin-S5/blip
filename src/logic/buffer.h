@@ -13,6 +13,8 @@ extern const uint32_t INIT_BUFFER_SIZE;
 // Maximum buffer size of 100MB
 extern const uint64_t MAX_BUFFER_SIZE;
 
+#define CHAR(x) (char) x
+
 typedef struct Buffer {
     uint8_t *items;
     size_t capacity;

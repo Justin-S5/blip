@@ -8,9 +8,4 @@
  */
 void window_init(void);
 
-/**
- * Closes the application window
- */
-void window_close(void);
-
 #endif // WINDOW_H
