@@ -6,6 +6,7 @@
 #include <stdint.h>
 #include <string.h>
 #include "file.h"
+#include "raylib5.h"
 
 // Initial buffer size
 extern const uint32_t INIT_BUFFER_SIZE;
@@ -13,10 +14,19 @@ extern const uint32_t INIT_BUFFER_SIZE;
 // Maximum buffer size of 100MB
 extern const uint64_t MAX_BUFFER_SIZE;
 
+typedef struct Item {
+    size_t start;
+    size_t end;
+    Color color;
+} Item;
+
 #define CHAR(x) (char) x
 
+/**
+ * Used to hold the contents of a file
+ */
 typedef struct Buffer {
-    uint8_t *items;
+    char *items;
     size_t capacity;
     size_t length;
 } Buffer;
@@ -37,6 +47,15 @@ Buffer buffer_create(size_t capacity);
  * @param file File contents
  */
 void buffer_fill(Buffer *buffer, FILE* file);
+
+/**
+ * Inserts a character into the buffer
+ * 
+ * @param buffer Buffer to be inserted into
+ * @param pos Current position in the buffer
+ * @param char Character to be inserted
+ */
+void buffer_insert(Buffer *buffer, int pos, char c);
 
 /**
  * Clear the contents of a buffer

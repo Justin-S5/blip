@@ -13,7 +13,7 @@ Buffer buffer_create(size_t capacity) {
     }
 
     // Allocate memory for the buffer items
-    uint8_t *items = calloc(capacity, sizeof(*items));
+    char *items = calloc(capacity, sizeof(*items));
 
     // Create a new buffer
     Buffer buffer = {
@@ -41,11 +41,16 @@ void buffer_fill(Buffer *buffer, FILE* file) {
     // If the buffer size is smaller than the file size, resize the buffer
     if (buffer->capacity < file_size) {
 
-        buffer->items = (uint8_t *) realloc(buffer->items, file_size);
+        buffer->items = (char *) realloc(buffer->items, file_size);
     }
 
     // Read the contents of the file into the buffer
     fread(buffer->items, sizeof(*(buffer->items)), file_size, file);
+}
+
+void buffer_insert(Buffer *buffer, int pos, char c) {
+
+    
 }
 
 void buffer_clear(Buffer *buffer) {
